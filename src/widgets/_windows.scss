@@ -54,9 +54,10 @@ decoration {
     }
 
     // server-size (Mutter) decorations, i.e. for legacy/non-GTK windows
+    // rems look to be mis-calculated, and padding is already applied somehow
     .ssd & {
-        // rems look to be miscalculated, so explicitly use px
         border-radius: 6px 6px 0 0;
+        padding: 0;
     }
 }
 
