@@ -1,72 +1,136 @@
+decoration {
+    border-radius: rem(6px);
+    box-shadow: shadow(4);
+    margin: rem(12px);
+
+    &:backdrop {
+        box-shadow: shadow(2);
+    }
+
+    .maximized &,
+    .fullscreen &,
+    .tiled &,
+    .tiled-top &,
+    .tiled-right &,
+    .tiled-bottom &,
+    .tiled-left & {
+        border-radius: 0;
+        box-shadow: shadow(1);
+    }
+}
+
+.titlebar {
+    @extend %outset-background;
+    background-color: #{"@color_primary"};
+    border-radius: rem(6px) rem(6px) 0 0;
+    box-shadow:
+        outset-highlight("full"),
+        // Intentionally not in ems since it's used as a stroke
+        0 0 0 1px #{'alpha(shade(@color_primary, 0.7), 0.4)'},
+        0 rem(1px) rem(2px) rgba(0, 0, 0, 0.2);
+    padding: rem(6px);
+
+    @if $color-scheme == "dark" {
+        box-shadow:
+            outset-highlight("full"),
+            // Intentionally not in ems since it's used as a stroke
+            0 0 0 1px #{'alpha(shade(@color_primary, 0.5), 0.5)'},
+            0 rem(1px) rem(2px) rgba(0, 0, 0, 0.2);
+    }
+
+    &:backdrop {
+        box-shadow:
+            outset-highlight("full"),
+            0 0 0 1px #{'alpha(shade(@color_primary, 0.7), 0.3)'},
+            0 rem(1px) rem(2px) rgba(0, 0, 0, 0.15);
+    }
+
+    &.default-decoration {
+        padding: rem(3px);
+    }
+
+    .title {
+        font-weight: 600;
+    }
+
+    // server-size (Mutter) decorations, i.e. for legacy/non-GTK windows
+    .ssd & {
+        // rems look to be miscalculated, so explicitly use px
+        border-radius: 6px 6px 0 0;
+    }
+}
+
 window:not(.popup),
 dialog {
+    // Round bottom corners
     border-radius: 0 0 rem(6px) rem(6px);
 
-    > decoration {
-        border-radius: rem(6px);
-        margin: rem(12px);
+    // > decoration {
+    //     border-width: 0;
+    //     border-radius: rem(6px);
+    //     margin: rem(12px);
 
-        &:backdrop {
-            box-shadow: shadow(2);
-        }
-    }
+    //     &:backdrop {
+    //         box-shadow: shadow(2);
+    //     }
+    // }
 
-    > .titlebar {
-        border-radius: rem(6px) rem(6px) 0 0;
-    }
+    // > .titlebar {
+    //     border-radius: rem(6px) rem(6px) 0 0;
+    // }
 }
 
 window:not(.popup) {
     // Intentionally not in ems since it's used as a stroke
     box-shadow: 0 0 0 1px $toplevel-border-color;
 
-    > decoration {
-        box-shadow: shadow(4);
+    // > decoration {
+    //     box-shadow: shadow(4);
 
-        &:backdrop {
-            box-shadow: shadow(2)
-        }
-    }
+    //     &:backdrop {
+    //         box-shadow: shadow(2)
+    //     }
+    // }
 
-    &.tiled {
-        > decoration {
-            box-shadow: shadow(1);
-        }
-    }
+    // &.tiled {
+    //     > decoration {
+    //         box-shadow: shadow(1);
+    //     }
+    // }
 
-    .titlebar {
-        @extend %outset-background;
-        background-color: #{"@color_primary"};
-        box-shadow:
-            outset-highlight("full"),
-            // Intentionally not in ems since it's used as a stroke
-            0 0 0 1px #{'alpha(shade(@color_primary, 0.7), 0.4)'},
-            0 rem(1px) rem(2px) rgba(0, 0, 0, 0.2);
-        padding: rem(6px);
+    // .titlebar {
+    //     @extend %outset-background;
+    //     background-color: #{"@color_primary"};
+    //     box-shadow:
+    //         outset-highlight("full"),
+    //         // Intentionally not in ems since it's used as a stroke
+    //         0 0 0 1px #{'alpha(shade(@color_primary, 0.7), 0.4)'},
+    //         0 rem(1px) rem(2px) rgba(0, 0, 0, 0.2);
+    //     padding: rem(6px);
 
-        @if $color-scheme == "dark" {
-            box-shadow:
-                outset-highlight("full"),
-                // Intentionally not in ems since it's used as a stroke
-                0 0 0 1px #{'alpha(shade(@color_primary, 0.5), 0.5)'},
-                0 rem(1px) rem(2px) rgba(0, 0, 0, 0.2);
-        }
+    //     @if $color-scheme == "dark" {
+    //         box-shadow:
+    //             outset-highlight("full"),
+    //             // Intentionally not in ems since it's used as a stroke
+    //             0 0 0 1px #{'alpha(shade(@color_primary, 0.5), 0.5)'},
+    //             0 rem(1px) rem(2px) rgba(0, 0, 0, 0.2);
+    //     }
 
-        &:backdrop {
-            box-shadow:
-                outset-highlight("full"),
-                0 0 0 1px #{'alpha(shade(@color_primary, 0.7), 0.3)'},
-                0 rem(1px) rem(2px) rgba(0, 0, 0, 0.15);
-        }
+    //     &:backdrop {
+    //         box-shadow:
+    //             outset-highlight("full"),
+    //             0 0 0 1px #{'alpha(shade(@color_primary, 0.7), 0.3)'},
+    //             0 rem(1px) rem(2px) rgba(0, 0, 0, 0.15);
+    //     }
 
-        &.default-decoration {
-	        padding: rem(3px);
-        }
+    //     &.default-decoration {
+	   //      padding: rem(3px);
+    //     }
 
-	    .title {
-	        font-weight: 600;
-	    }
-    }
+	   //  .title {
+	   //      font-weight: 600;
+	   //  }
+    // }
 }
 
 dialog {
